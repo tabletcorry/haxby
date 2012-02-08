@@ -18,5 +18,5 @@ http://jeffammons.net/2011/09/fixing-postgres-on-mac-10-7-tiger-for-django/
 Some contributions were wiped out in the creation of the repo, they are listed
 here
 
-@adinardi
-@danw
+[adinardi](https://github.com/adinardi)
+[danw](https://github.com/danw)
