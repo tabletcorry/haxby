@@ -13,3 +13,10 @@ Run init.sh to create/wipe the database.
 If you hit issues with shared memory (on mac), read this:
 
 http://jeffammons.net/2011/09/fixing-postgres-on-mac-10-7-tiger-for-django/
+
+# Contributors
+Some contributions were wiped out in the creation of the repo, they are listed
+here
+
+@adinardi
+@danw
