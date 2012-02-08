@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd `dirname $0`
+cd `dirname $0`/..
 
 export PG_CONTRIB=$(pg_config --sharedir)/contrib
 
@@ -28,13 +28,11 @@ do
     for schema in `find schemas.d -name '*.sql'`
     do
       psql --echo-all -f $schema $database
-      psql --echo-all -f $schema ${database}_test
     done
 
     for testdata in `find data.d -name '*.sql'`
     do
       psql --echo-all -f $testdata $database
-      psql --echo-all -f $testdata ${database}_test
     done
     popd
 done
