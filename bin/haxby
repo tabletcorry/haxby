@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Major portions of logic below inspired by https://github.com/jayferd/balls
+
+HAXBY_LIB=$(dirname $0)/../lib
+HAXBY_LIB=$(readlink -f "$HAXBY_LIB")
+
+mode=$1
+shift
+
+while getopts 'c:' opt; do
+    case $opt in
+        c)
+            HAXBY_CONF=$OPTARG
+        ;;
+    esac
+done
+
+[[ -n "$HAXBY_CONF" ]] && . "$HAXBY_CONF"
+
+. $HAXBY_CONF/haxby.sh
+
+case $mode in
+    newdb)
+        haxby::$mode
+    ;;
+    *)
+        echo "Unknown Mode"
+    ;;
+esac
