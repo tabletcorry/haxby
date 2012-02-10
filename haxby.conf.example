@@ -1,11 +1,48 @@
+###
+## HAXBY_DATABASE_D states the location of your database schemas
+##  This folder will contain a folder-per-database, each containing schemas
+##
+##  Default: ./databases
+##
+##  Will be created if it does not exist, but only by "newdb" mode
+###
+#HAXBY_DATABASE_D=./databases
 
-HAXBY_DATABASE_D=./databases
+###
+## HAXBY_DATA states the location of your actual postgres data files
+##
+##  Default: ./pg
+##
+## Will be created if it does not exist
+###
+#HAXBY_DATA=./pg
 
-HAXBY_DATA=./pg
+###
+## HAXBY_TMP is not currently used
+##
+##  Default: /tmp/haxby
+##
+## Will be created if it does not exist
+###
+#HAXBY_TMP=/tmp/haxby
 
-HAXBY_TMP=/tmp/haxby
-
+###
+## PGDATA states the path of the postgres data directory
+##  Used by postgres binaries
+##
+##  Default: $HAXBY_DATA/pgdata
+##
+##  Will be created if it does not exist
+###
 # PGDATA=$HAXBY_DATA/pgdata
+
+###
+## PGLOG states the name of the log file for postgres
+##
+##  Default: $HAXBY_DATA/pglog
+##
+##  Will be created if it does not exist
+###
 # PGLOG=$HAXBY_DATA/pglog
 
 # There is almost no reason to change this
