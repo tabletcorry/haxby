@@ -3,6 +3,12 @@
 # Major portions of logic below inspired by https://github.com/jayferd/balls
 
 HAXBY_LIB=$(dirname $0)/../lib
+if which greadlink >/dev/null 2>&1
+then
+    function readlink {
+        greadlink $@
+    }
+fi
 HAXBY_LIB=$(readlink -f "$HAXBY_LIB")
 
 mode=$1
@@ -18,13 +24,16 @@ done
 
 [[ -n "$HAXBY_CONF" ]] && . "$HAXBY_CONF"
 
-. $HAXBY_CONF/haxby.sh
+. $HAXBY_LIB/haxby.sh
 
-case $mode in
-    newdb)
+for haxby_mode in $HAXBY_MODES
+do
+    if [ "$haxby_mode" == "$mode" ]; then
         haxby::$mode
-    ;;
-    *)
-        echo "Unknown Mode"
-    ;;
-esac
+        exit $?
+    fi
+done
+
+echo "Unknown Mode"
+echo "Supported Modes: $HAXBY_MODES"
+exit 1

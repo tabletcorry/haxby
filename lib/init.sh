@@ -1,5 +1,9 @@
 #!/bin/bash
 
+HAXBY_MODES="$HAXBY_MODES init"
+
+function haxby::init {
+
 cd `dirname $0`/..
 
 export PG_CONTRIB=$(pg_config --sharedir)/contrib
@@ -36,3 +40,4 @@ do
     done
     popd
 done
+}
