@@ -1,10 +1,11 @@
 #!/bin/bash
 
-cd `dirname $0`/..
+HAXBY_MODES="$HAXBY_MODES clean"
 
-export PGDATA=pgdata
-export PGLOG=pglog
+function haxby::clean {
 
 pg_ctl stop -m immediate
 
-rm -r pgdata pglog
+rm -r $PGDATA $PGLOG
+
+}

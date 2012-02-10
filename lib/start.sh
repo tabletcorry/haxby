@@ -1,10 +1,9 @@
 #!/bin/bash
 
-cd `dirname $0`/..
+HAXBY_MODES="$HAXBY_MODES start"
 
-export PG_CONTRIB=$(pg_config --sharedir)/contrib
-
-export PGDATA=pgdata
-export PGLOG=pglog
+function haxby::start {
 
 pg_ctl -l $PGLOG -w start
+
+}

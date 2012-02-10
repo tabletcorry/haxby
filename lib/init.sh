@@ -4,13 +4,6 @@ HAXBY_MODES="$HAXBY_MODES init"
 
 function haxby::init {
 
-cd `dirname $0`/..
-
-export PG_CONTRIB=$(pg_config --sharedir)/contrib
-
-export PGDATA=pgdata
-export PGLOG=pglog
-
 pg_ctl stop -m immediate
 rm -r $PGDATA
 

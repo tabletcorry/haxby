@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -e
+HAXBY_MODES="$HAXBY_MODES newdb"
 
-cd `dirname $0`/..
+function haxby::newdb {
 
 db=$1
 if [ -z "$db" ]; then
@@ -29,3 +29,5 @@ EOF
 ) >init.sql
 
 popd >/dev/null
+
+}
