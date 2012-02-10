@@ -1,0 +1,12 @@
+
+HAXBY_DATABASE_D=./databases
+
+HAXBY_DATA=./pg
+
+HAXBY_TMP=/tmp/haxby
+
+# PGDATA=$HAXBY_DATA/pgdata
+# PGLOG=$HAXBY_DATA/pglog
+
+# There is almost no reason to change this
+# PG_CONTRIB=

@@ -10,8 +10,8 @@ if [ -z "$db" ]; then
     exit 1
 fi
 
-mkdir -p databases/$1/{schemas.d,data.d}
-pushd databases/$1 >/dev/null
+mkdir -p $HAXBY_DATABASE_D/$1/{schemas.d,data.d}
+pushd $HAXBY_DATABASE_D/$1 >/dev/null
 touch init.sql
 
 (
