@@ -45,7 +45,13 @@ fi
 [[ -n "$HAXBY_CONF" ]] && HAXBY_CONF_DIR=$(dirname $HAXBY_CONF)
 [[ -n "$HAXBY_CONF" ]] && . "$HAXBY_CONF"
 
-. $HAXBY_LIB/haxby.sh
+function check_if_installed {
+    HAXBY_LIB=$(dirname $0)/../share/haxby
+    HAXBY_LIB=$(readlink -f "$HAXBY_LIB")
+    . $HAXBY_LIB/haxby.sh || { echo "Failed to find lib directory"; exit 1; }
+}
+
+. $HAXBY_LIB/haxby.sh 2>/dev/null || check_if_installed
 
 for haxby_mode in $HAXBY_MODES
 do
