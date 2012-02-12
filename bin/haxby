@@ -18,10 +18,31 @@ while getopts 'c:' opt; do
     case $opt in
         c)
             HAXBY_CONF=$OPTARG
+            HAXBY_SKIP_AUTO=true
         ;;
     esac
 done
 
+function haxby::search-conf {
+    HAXBY_CONF=$(find $GIT_ROOT -name 'haxby.conf')
+    CONF_COUNT=$(wc -l <<<$HAXBY_CONF)
+    if [ "$CONF_COUNT" -gt "1" ]; then
+        echo "Found more than one 'haxby.conf', failed auto-conf"
+        unset HAXBY_CONF
+    elif [ "$CONF_COUNT" -eq "0" ]; then
+        echo "No config was auto-discovered or specified, exiting"
+        exit 1
+    fi
+    echo $HAXBY_CONF
+}
+
+if [ -z "$HAXBY_SKIP_AUTO" ]; then
+    GIT_ROOT=$(git rev-parse --show-toplevel || true)
+    [[ -n "$GIT_ROOT" ]] && HAXBY_CONF=$(haxby::search-conf)
+fi
+
+[[ -n "$HAXBY_CONF" ]] && HAXBY_CONF=$(readlink -f $HAXBY_CONF)
+[[ -n "$HAXBY_CONF" ]] && HAXBY_CONF_DIR=$(dirname $HAXBY_CONF)
 [[ -n "$HAXBY_CONF" ]] && . "$HAXBY_CONF"
 
 . $HAXBY_LIB/haxby.sh
