@@ -14,15 +14,6 @@ HAXBY_LIB=$(readlink -f "$HAXBY_LIB")
 mode=$1
 shift
 
-while getopts 'c:' opt; do
-    case $opt in
-        c)
-            HAXBY_CONF=$OPTARG
-            HAXBY_SKIP_AUTO=true
-        ;;
-    esac
-done
-
 function haxby::search-conf {
     HAXBY_CONF=$(find $GIT_ROOT -name 'haxby.conf')
     CONF_COUNT=$(wc -l <<<$HAXBY_CONF)
@@ -56,7 +47,7 @@ function check_if_installed {
 for haxby_mode in $HAXBY_MODES
 do
     if [ "$haxby_mode" == "$mode" ]; then
-        haxby::$mode
+        haxby::$mode $@
         exit $?
     fi
 done
