@@ -8,6 +8,7 @@ class Haxby < Formula
 
     depends_on 'coreutils' # Specifically greadlink
     depends_on 'proctools' # Specifically pgrep
+    depends_on 'postgresql' # Because thats what it does
 
     def install
         bin.install Dir['bin/*']
