@@ -6,7 +6,7 @@ function haxby::lib::newdb {
 
 db=$1
 if [ -z "$db" ]; then
-    echo "Usage: new-db.sh name"
+    echo "Usage: haxby newdb name"
     exit 1
 fi
 
