@@ -7,6 +7,7 @@ class Haxby < Formula
     sha256 "91584320d97c4602ea4967ba711942351d592ff3b414d5bdad887a68b0d6ea45"
 
     depends_on 'coreutils' # Specifically greadlink
+    depends_on 'proctools' # Specifically pgrep
 
     def install
         bin.install Dir['bin/*']

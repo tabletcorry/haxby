@@ -9,6 +9,13 @@ cd $HAXBY_DATA
 pg_ctl stop -m immediate
 rm -r $PGDATA
 
+if pgrep postgres
+then
+    echo "A Postgres process is still running"
+    echo "This will mess things up (usually); Bailing"
+    exit 1
+fi
+
 echo "***" >>$PGLOG
 echo "*** Postgres init.sh restart at $(date)" >>$PGLOG
 echo "*** $(git log -1 --oneline)" >>$PGLOG
