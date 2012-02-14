@@ -3,6 +3,7 @@ require 'formula'
 class Haxby < Formula
     homepage 'https://github.com/tabletcorry/haxby'
     url "https://github.com/tabletcorry/haxby/tarball/haxby-0.1"
+    head "git://github.com/tabletcorry/haxby.git"
     sha256 "68671482d9b4b71b62e15e2335849aa4e48433ccf15a78c875daac983565e8ef"
 
     depends_on 'coreutils' # Specifically greadlink
