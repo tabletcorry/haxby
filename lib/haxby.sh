@@ -17,12 +17,13 @@ export PGLOG
 
 HAXBY_MODES="help"
 
-function haxby::lib::help {
-    echo "HELP!"
-}
-
 . $HAXBY_LIB/init.sh
 . $HAXBY_LIB/new-db.sh
 . $HAXBY_LIB/start.sh
 . $HAXBY_LIB/stop.sh
 . $HAXBY_LIB/cleanup.sh
+
+function haxby::lib::help {
+    echo "HELP!"
+    echo "Known modes: $HAXBY_MODES"
+}

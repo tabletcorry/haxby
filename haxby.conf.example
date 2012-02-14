@@ -7,6 +7,7 @@
 ##  Will be created if it does not exist, but only by "newdb" mode
 ###
 #HAXBY_DATABASE_D=./databases
+#HAXBY_DATABASE_D=$HAXBY_CONF_DIR/databases
 
 ###
 ## HAXBY_DATA states the location of your actual postgres data files
@@ -16,6 +17,7 @@
 ## Will be created if it does not exist
 ###
 #HAXBY_DATA=./pg
+#HAXBY_DATA=$HAXBY_CONF_DIR/pg
 
 ###
 ## HAXBY_TMP is not currently used
