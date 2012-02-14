@@ -2,19 +2,20 @@
 
 # Major portions of logic below inspired by https://github.com/jayferd/balls
 
-HAXBY_LIB=$(dirname $0)/../lib
-if which greadlink >/dev/null 2>&1
-then
-    function readlink {
-        greadlink $@
-    }
-fi
-HAXBY_LIB=$(readlink -f "$HAXBY_LIB")
 
-mode=$1
-shift
+function haxby::bin::find-lib {
+    HAXBY_LIB=$(dirname $0)/../lib
+    if which greadlink >/dev/null 2>&1
+    then
+        function readlink {
+            greadlink $@
+        }
+    fi
+    HAXBY_LIB=$(readlink -f "$HAXBY_LIB")
+}
 
-function haxby::search-conf {
+
+function haxby::bin::search-conf {
     HAXBY_CONF=$(find $GIT_ROOT -name 'haxby.conf')
     CONF_COUNT=$(wc -l <<<$HAXBY_CONF)
     if [ "$CONF_COUNT" -gt "1" ]; then
@@ -27,22 +28,27 @@ function haxby::search-conf {
     echo $HAXBY_CONF
 }
 
-if [ -z "$HAXBY_SKIP_AUTO" ]; then
+function haxby::bin::load-conf {
     GIT_ROOT=$(git rev-parse --show-toplevel || true)
-    [[ -n "$GIT_ROOT" ]] && HAXBY_CONF=$(haxby::search-conf)
-fi
+    [[ -n "$GIT_ROOT" ]] && HAXBY_CONF=$(haxby::bin::search-conf)
 
-[[ -n "$HAXBY_CONF" ]] && HAXBY_CONF=$(readlink -f $HAXBY_CONF)
-[[ -n "$HAXBY_CONF" ]] && HAXBY_CONF_DIR=$(dirname $HAXBY_CONF)
-[[ -n "$HAXBY_CONF" ]] && . "$HAXBY_CONF"
+    [[ -n "$HAXBY_CONF" ]] && HAXBY_CONF=$(readlink -f $HAXBY_CONF)
+    [[ -n "$HAXBY_CONF" ]] && HAXBY_CONF_DIR=$(dirname $HAXBY_CONF)
+    [[ -n "$HAXBY_CONF" ]] && . "$HAXBY_CONF"
+}
 
-function check_if_installed {
+function haxby::bin::check-installed-lib {
     HAXBY_LIB=$(dirname $0)/../share/haxby
     HAXBY_LIB=$(readlink -f "$HAXBY_LIB")
     . $HAXBY_LIB/haxby.sh || { echo "Failed to find lib directory"; exit 1; }
 }
 
-. $HAXBY_LIB/haxby.sh 2>/dev/null || check_if_installed
+mode=$1
+shift
+
+haxby::bin::find-lib
+haxby::bin::load-conf
+. $HAXBY_LIB/haxby.sh 2>/dev/null || haxby::bin::check-installed-lib
 
 for haxby_mode in $HAXBY_MODES
 do
