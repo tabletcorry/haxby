@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 # Major portions of logic below inspired by https://github.com/jayferd/balls
+#  Primarily the rough idea for finding the lib directory
+#  Also the method naming and mode function calling
 
+# BSD readlink does not work with the args used in haxby, switch to GNU
+#  TODO: Try to make all readlinks work with magic?
 if which greadlink >/dev/null 2>&1
 then
     function readlink {
