@@ -9,11 +9,15 @@ Haxby is a quick and easy way to get a Postgresql database up and running. It
 is primarily intended for developemental efforts.
 
 # Usage
-After you clone the repo, just run `new-db.sh <db-name>` and it will create
-a directory with a `schemas.d` folder and `data.d` folder.
+Commands in haxby are executed using modes, ala `haxby init` or `haxby stop`.
 
-Once you drop some schema files into the folder above, you can run `init.sh` at
-any time to stop and wipe any existing instance, then create a new one.
+A general workflow for haxby is to create a database with `haxby newdb name`
+then initialize and start the database with `haxby init`
+
+Adding a config file may be a good idea too! So long as you are in a git
+repository (and why wouldn't you be) you can put a file named `haxby.conf`
+anywhere (in the repo, that is) and haxby will find it. An example config is
+available in the source tree.
 
 # Notes
 You will need postgres. This is currently only tested on Homebrew Postgres 9.X
@@ -23,7 +27,7 @@ If you hit issues with shared memory (on mac), you are probably running more
 than one instance of postgres. Don't do that. If you really need to though,
 take a look at this document: http://jeffammons.net/2011/09/fixing-postgres-on-mac-10-7-tiger-for-django/
 
-# Contributors
+# Initial Contributors
 Some contributions were wiped out in the creation of the repo, they are listed
 here
 
