@@ -4,6 +4,12 @@ purpose is unclear.
 _Definition borrowed from "The Meaning of Liff" by Douglas Adams and 
 John Lloyd_
 
+# WARNING
+Please note that this project is still under development. It may be a bit
+difficult to figure out or use. I will be making it more usable as time allows.
+
+Feel free to message me to ask how it works.
+
 # Purpose
 Haxby is a quick and easy way to get a Postgresql database up and running. It
 is primarily intended for developemental efforts.
