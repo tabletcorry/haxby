@@ -3,3 +3,5 @@
     * Would require using DROP DATABASE to ensure total wipe
 * A useful `help` mode would be a major plus
     * And perhaps a man page too!
+* Should be able to apply its configs to a real DB instance, for deployment
+    * Then we are really cooking!
