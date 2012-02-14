@@ -2,7 +2,6 @@
 
 # Major portions of logic below inspired by https://github.com/jayferd/balls
 
-
 function haxby::bin::find-lib {
     HAXBY_LIB=$(dirname $0)/../lib
     if which greadlink >/dev/null 2>&1
@@ -53,7 +52,7 @@ haxby::bin::load-conf
 for haxby_mode in $HAXBY_MODES
 do
     if [ "$haxby_mode" == "$mode" ]; then
-        haxby::$mode $@
+        haxby::lib::$mode $@
         exit $?
     fi
 done

@@ -17,7 +17,7 @@ export PGLOG
 
 HAXBY_MODES="help"
 
-function haxby::help {
+function haxby::lib::help {
     echo "HELP!"
 }
 

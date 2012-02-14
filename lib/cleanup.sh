@@ -2,7 +2,7 @@
 
 HAXBY_MODES="$HAXBY_MODES clean"
 
-function haxby::clean {
+function haxby::lib::clean {
 
 cd $HAXBY_DATA
 

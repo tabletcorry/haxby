@@ -2,7 +2,7 @@
 
 HAXBY_MODES="$HAXBY_MODES stop"
 
-function haxby::stop {
+function haxby::lib::stop {
 
 cd $HAXBY_DATA
 

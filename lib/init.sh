@@ -2,7 +2,7 @@
 
 HAXBY_MODES="$HAXBY_MODES init"
 
-function haxby::init {
+function haxby::lib::init {
 
 cd $HAXBY_DATA
 
