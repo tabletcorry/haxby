@@ -5,3 +5,5 @@
     * And perhaps a man page too!
 * Should be able to apply its configs to a real DB instance, for deployment
     * Then we are really cooking!
+* Support older versions of postgres
+    * Specifically, pgctl only recently added initdb as a mode
