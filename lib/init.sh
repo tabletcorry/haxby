@@ -6,8 +6,10 @@ function haxby::lib::init {
 
 cd $HAXBY_DATA
 
+set +e
 pg_ctl stop -m immediate
 rm -r $PGDATA
+set -e
 
 if pgrep postgres
 then
