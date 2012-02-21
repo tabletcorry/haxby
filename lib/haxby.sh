@@ -3,13 +3,13 @@
 [[ -z "$HAXBY_TMP" ]] && HAXBY_TMP=/tmp/haxby
 [[ ! -d "$HAXBY_TMP" ]] && mkdir $HAXBY_TMP
 
-[[ -z "$HAXBY_DATABASE_D" ]] && HAXBY_DATABASE_D=./databases
-[[ -z "$HAXBY_DATA" ]] && HAXBY_DATA=./pg
+[[ -z "$HAXBY_DATABASE_D" ]] && HAXBY_DATABASE_D=$HAXBY_CONF_DIR/databases
+[[ -z "$HAXBY_DATA" ]] && HAXBY_DATA=$HAXBY_CONF_DIR/pg
 [[ ! -d "$HAXBY_DATA" ]] && mkdir $HAXBY_DATA
 
 [[ -z "$PG_CONTRIB" ]] && PG_CONTRIB=$(pg_config --sharedir)/contrib
-[[ -z "$PGDATA" ]] && PGDATA=pgdata
-[[ -z "$PGLOG" ]] && PGLOG=pglog
+[[ -z "$PGDATA" ]] && PGDATA=$HAXBY_DATA/pgdata
+[[ -z "$PGLOG" ]] && PGLOG=$HAXBY_DATA/pglog
 
 export PG_CONTRIB
 export PGDATA

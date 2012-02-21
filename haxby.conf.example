@@ -2,7 +2,7 @@
 ## HAXBY_DATABASE_D states the location of your database schemas
 ##  This folder will contain a folder-per-database, each containing schemas
 ##
-##  Default: ./databases
+##  Default: $HAXBY_CONF_DIR/databases
 ##
 ##  Will be created if it does not exist, but only by "newdb" mode
 ###
@@ -12,7 +12,7 @@
 ###
 ## HAXBY_DATA states the location of your actual postgres data files
 ##
-##  Default: ./pg
+##  Default: $HAXBY_CONF_DIR/pg
 ##
 ## Will be created if it does not exist
 ###
