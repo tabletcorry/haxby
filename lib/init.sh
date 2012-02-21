@@ -23,7 +23,9 @@ echo "*** Postgres init.sh restart at $(date)" >>$PGLOG
 echo "*** $(git log -1 --oneline)" >>$PGLOG
 echo "***"  >>$PGLOG
 
-pg_ctl -l $PGLOG initdb
+initdb >>$PGLOG 2>&1
+
+[[ -e "postgresql.conf" ]] && cp postgresql.conf $PGDATA
 
 pg_ctl -l $PGLOG -w start
 
