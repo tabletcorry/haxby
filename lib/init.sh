@@ -33,16 +33,17 @@ for database in `ls $HAXBY_DATABASE_D`
 do
     pushd $HAXBY_DATABASE_D/$database
     #psql -d $database -f $PG_CONTRIB/uuid-ossp.sql
-    psql --echo-all -f init.sql postgres
+    psql="psql --echo-all --set=ON_ERROR_STOP="
+    $psql -f init.sql -d postgres
 
     for schema in `find schemas.d -name '*.sql'`
     do
-      psql --echo-all -f $schema $database
+      $psql -f $schema -d $database
     done
 
     for testdata in `find data.d -name '*.sql'`
     do
-      psql --echo-all -f $testdata $database
+      $psql -f $testdata -d $database
     done
     popd
 done
