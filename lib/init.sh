@@ -26,6 +26,8 @@ echo "***"  >>$PGLOG
 initdb >>$PGLOG 2>&1
 
 [[ -e "postgresql.conf" ]] && cp postgresql.conf $PGDATA
+[[ -e "pg_hba.conf" ]] && cp pg_hba.conf $PGDATA
+[[ -e "pg_ident.conf" ]] && cp pf_ident.conf $PGDATA
 
 pg_ctl -l $PGLOG -w start
 
