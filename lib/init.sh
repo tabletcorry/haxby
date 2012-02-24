@@ -34,9 +34,13 @@ pg_ctl -l $PGLOG -w start
 for database in `ls $HAXBY_DATABASE_D`
 do
     pushd $HAXBY_DATABASE_D/$database
-    #psql -d $database -f $PG_CONTRIB/uuid-ossp.sql
     psql="psql --echo-all --set=ON_ERROR_STOP="
     $psql -f init.sql -d postgres
+
+    for module in $PG_MODULES
+    do
+        psql -d $database -f $PG_CONTRIB/$module
+    done
 
     for schema in `find schemas.d -name '*.sql'`
     do

@@ -47,5 +47,14 @@
 ###
 # PGLOG=$HAXBY_DATA/pglog
 
+###
+## PG_MODULES lists the contrib modules to load
+##
+## Default: <Empty>
+##
+## Separate the modules with spaces only
+###
+#PG_MODULES="uuid-ossp hstore"
+
 # There is almost no reason to change this
 # PG_CONTRIB=
