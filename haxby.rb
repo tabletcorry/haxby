@@ -11,7 +11,6 @@ class Haxby < Formula
     depends_on 'postgresql' # Because thats what it does
 
     def install
-        bin.install Dir['bin/*']
-        (share+'haxby').install Dir['lib/*']
+        system "./install.sh -p #{prefix}"
     end
 end
