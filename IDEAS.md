@@ -8,7 +8,6 @@
     * Trigger help mode if `haxby` is run with no arguments
 * Should be able to apply its configs to a real DB instance, for deployment
     * Then we are really cooking!
-* <strike>Make the lib directory a build-time configuration option</strike>
 * More ways to do config autodiscovery
     * And a flag to specify the exact file
 * Don't create pg folder unless necessary
