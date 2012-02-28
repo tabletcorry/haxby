@@ -26,11 +26,10 @@ HAXBY_MODE_DIR=$(readlink -f "$HAXBY_MODE_DIR")
 
 HAXBY_MODES="help"
 
-. $HAXBY_MODE_DIR/init.sh
-. $HAXBY_MODE_DIR/new-db.sh
-. $HAXBY_MODE_DIR/start.sh
-. $HAXBY_MODE_DIR/stop.sh
-. $HAXBY_MODE_DIR/cleanup.sh
+for mode_file in `ls $HAXBY_MODE_DIR`
+do
+    . $HAXBY_MODE_DIR/$mode_file
+done
 
 function haxby::modes::help {
     echo "HELP!"

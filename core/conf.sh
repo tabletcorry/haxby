@@ -17,7 +17,7 @@ function haxby::core::load-conf {
 
     [[ -z "$HAXBY_CONF" ]] && { echo "Config auto-discovery failed, exiting"; exit 1; }
 
-    [[ -n "$HAXBY_CONF" ]] && HAXBY_CONF=$(readlink -f $HAXBY_CONF)
-    [[ -n "$HAXBY_CONF" ]] && HAXBY_CONF_DIR=$(dirname $HAXBY_CONF)
-    [[ -n "$HAXBY_CONF" ]] && . "$HAXBY_CONF"
+    HAXBY_CONF=$(readlink -f $HAXBY_CONF)
+    HAXBY_CONF_DIR=$(dirname $HAXBY_CONF)
+    . "$HAXBY_CONF"
 }

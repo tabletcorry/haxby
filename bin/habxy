@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
+# Please note that this file is _not used_ in installed systems
+# A new file is created to point to the installed location of files
+
 HAXBY_ROOT=$(dirname $0)/..
 . $HAXBY_ROOT/core/haxby.sh
