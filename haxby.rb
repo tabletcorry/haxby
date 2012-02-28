@@ -2,9 +2,9 @@ require 'formula'
 
 class Haxby < Formula
     homepage 'https://github.com/tabletcorry/haxby'
-    url "https://github.com/tabletcorry/haxby/tarball/haxby-0.3"
+    url "https://github.com/tabletcorry/haxby/tarball/haxby-0.4"
     head "git://github.com/tabletcorry/haxby.git"
-    sha256 "7060916cd4a7698c9827842abe0d71c8a49c0d06547943508d46791a7cb13eed"
+    sha256 "64c36303f41a10462971a6a75bf7c511b4bbf75a97cb78a66bfa07475691073a"
 
     depends_on 'coreutils' # Specifically greadlink
     depends_on 'proctools' # Specifically pgrep
