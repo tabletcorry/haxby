@@ -2,7 +2,7 @@
 
 HAXBY_MODES="$HAXBY_MODES init"
 
-function haxby::lib::init {
+function haxby::modes::init {
 
 cd $HAXBY_DATA
 
@@ -39,7 +39,8 @@ do
 
     for module in $PG_MODULES
     do
-        psql -d $database -f $PG_CONTRIB/$module
+
+        psql -d $database -f $PG_CONTRIB/$module.sql
     done
 
     for schema in `find schemas.d -name '*.sql'`

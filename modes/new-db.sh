@@ -2,7 +2,7 @@
 
 HAXBY_MODES="$HAXBY_MODES newdb"
 
-function haxby::lib::newdb {
+function haxby::modes::newdb {
 
 db=$1
 if [ -z "$db" ]; then

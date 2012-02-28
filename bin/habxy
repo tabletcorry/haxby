@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+HAXBY_ROOT=$(dirname $0)/..
+. $HAXBY_ROOT/core/haxby.sh
