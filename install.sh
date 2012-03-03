@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
+set -e
+
 PREFIX="/"
 
 function haxby::install::uninstall {
-    :
+    rm $PREFIX/bin/haxby
+    rm -r $PREFIX/share/haxby
 }
 
 function haxby::install::install {
@@ -12,8 +15,8 @@ function haxby::install::install {
     mkdir -p $PREFIX/share/haxby/{core,modes}
     cp ./modes/* $PREFIX/share/haxby/modes/
     cp ./core/* $PREFIX/share/haxby/core/
-    cp ./haxby.conf.example $PREFIX/share/
-    cp ./LICENCE $PREFIX/share/
+    cp ./haxby.conf.example $PREFIX/share/haxby/
+    cp ./LICENCE $PREFIX/share/haxby/
 
     echo "#!/usr/bin/env bash" >$PREFIX/bin/haxby
     echo "HAXBY_ROOT=$PREFIX/share/haxby" >>$PREFIX/bin/haxby
