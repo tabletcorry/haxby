@@ -16,7 +16,7 @@ function haxby::install::install {
     cp ./modes/* $PREFIX/share/haxby/modes/
     cp ./core/* $PREFIX/share/haxby/core/
     cp ./haxby.conf.example $PREFIX/share/haxby/
-    cp ./LICENCE $PREFIX/share/haxby/
+    cp ./LICENSE $PREFIX/share/haxby/
 
     echo "#!/usr/bin/env bash" >$PREFIX/bin/haxby
     echo "HAXBY_ROOT=$PREFIX/share/haxby" >>$PREFIX/bin/haxby
