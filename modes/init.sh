@@ -7,6 +7,13 @@ function haxby::modes::init {
 cd $HAXBY_DATA
 
 set +e
+if [ "$1" == "restore" ]; then
+    for database in `ls $HAXBY_DATABASE_D`
+    do
+        echo "Backing up data"
+        pg_dump -a -F plain -O --column-inserts -f $HAXBY_DATA/prior_data_$database $database
+    done
+fi
 pg_ctl stop -m immediate
 rm -r $PGDATA
 set -e
@@ -48,10 +55,17 @@ do
       $psql -f $schema -d $database
     done
 
-    for testdata in `find data.d -name '*.sql'`
-    do
-      $psql -f $testdata -d $database
-    done
+
+    if [ "$1" == "restore" ]; then
+        echo "Restoring Data"
+        psql --set=ON_ERROR_STOP -1 -d $database -f $HAXBY_DATA/prior_data_$database -q >/dev/null
+    else
+        for testdata in `find data.d -name '*.sql'`
+        do
+          $psql -f $testdata -d $database
+        done
+    fi
+    
     popd
 done
 }

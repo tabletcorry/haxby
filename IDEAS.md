@@ -13,4 +13,3 @@
 * Don't create pg folder unless necessary
 * A mode to create the example config
 * An option to save the old data on init
-* Init using data from existing instance
