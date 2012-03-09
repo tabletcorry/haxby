@@ -4,19 +4,32 @@ HAXBY_MODES="$HAXBY_MODES init"
 
 function haxby::modes::init {
 
+case $1 in
+    "reload")
+        RELOAD_DATA=true
+        ;;
+    "restore")
+        RELOAD_DATA=true
+        ;;
+esac
+
 cd $HAXBY_DATA
 
-set +e
-if [ "$1" == "restore" ]; then
+if [ -n "$RELOAD_DATA" ]; then
     for database in `ls $HAXBY_DATABASE_D`
     do
-        echo "Backing up data"
-        pg_dump -a -F plain -O --column-inserts -f $HAXBY_DATA/prior_data_$database $database
+        cecho "Backing up data" $blue
+        pg_dump -a -F plain -O --column-inserts \
+            -f $HAXBY_DATA/prior_data_$database $database \
+            || { echo "Backup failed. Is the DB online?"; exit 1; }
     done
 fi
+cecho "Stopping old database" $blue
+set +e
 pg_ctl stop -m immediate
-rm -r $PGDATA
 set -e
+cecho "Deleting old database files" $blue
+rm -rf $PGDATA
 
 if pgrep postgres
 then
@@ -30,42 +43,47 @@ echo "*** Postgres init.sh restart at $(date)" >>$PGLOG
 echo "*** $(git log -1 --oneline)" >>$PGLOG
 echo "***"  >>$PGLOG
 
+cecho "Creating new database files" $blue
 initdb >>$PGLOG 2>&1
 
 [[ -e "postgresql.conf" ]] && cp postgresql.conf $PGDATA
 [[ -e "pg_hba.conf" ]] && cp pg_hba.conf $PGDATA
 [[ -e "pg_ident.conf" ]] && cp pf_ident.conf $PGDATA
 
+cecho "Starting new database" $blue
 pg_ctl -l $PGLOG -w start
 
 for database in `ls $HAXBY_DATABASE_D`
 do
-    pushd $HAXBY_DATABASE_D/$database
+    pushd $HAXBY_DATABASE_D/$database >/dev/null
     psql="psql --echo-all --set=ON_ERROR_STOP="
-    $psql -f init.sql -d postgres
+    cecho "Loading init.sql" $blue
+    $psql -f init.sql -d postgres >/dev/null
 
     for module in $PG_MODULES
     do
-
+        cecho "Loading module $module" $blue
         psql -d $database -f $PG_CONTRIB/$module.sql
     done
 
     for schema in `find schemas.d -name '*.sql'`
     do
-      $psql -f $schema -d $database
+        cecho "Loading $schema from schemas.d" $blue
+        $psql -f $schema -d $database >/dev/null
     done
 
 
-    if [ "$1" == "restore" ]; then
-        echo "Restoring Data"
+    if [ -n "$RELOAD_DATA" ]; then
+        cecho "Restoring data from backup" $blue
         psql --set=ON_ERROR_STOP -1 -d $database -f $HAXBY_DATA/prior_data_$database -q >/dev/null
     else
         for testdata in `find data.d -name '*.sql'`
         do
-          $psql -f $testdata -d $database
+            cecho "Loading $testdata from data.d" $blue
+            $psql -f $testdata -d $database >/dev/null
         done
     fi
     
-    popd
+    popd >/dev/null
 done
 }
