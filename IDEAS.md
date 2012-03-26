@@ -13,3 +13,6 @@
 * Don't create pg folder unless necessary
 * A mode to create the example config
 * An option to save the old data on init
+* New Mode: Schema
+    * Shows Numbered interface to allow editing of schema files
+    * i.e: type '1', opens first schema file in $EDITOR
