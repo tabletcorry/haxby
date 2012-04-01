@@ -1,7 +1,7 @@
 function haxby::core::readlink {
 
 # BSD readlink does not work with the args used in haxby
-if readlink -f >/dev/null 2>&1
+if readlink -f $HOME >/dev/null 2>&1
 then
     # System has gnu coreutils (probably)
     : # noop
