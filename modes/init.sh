@@ -66,7 +66,7 @@ do
         psql -d $database -f $PG_CONTRIB/$module.sql
     done
 
-    for schema in `find schemas.d -name '*.sql'`
+    for schema in `find -L schemas.d -name '*.sql'`
     do
         cecho "Loading $schema from schemas.d" $blue
         $psql -f $schema -d $database >/dev/null
@@ -77,7 +77,7 @@ do
         cecho "Restoring data from backup" $blue
         psql --set=ON_ERROR_STOP -1 -d $database -f $HAXBY_DATA/prior_data_$database -q >/dev/null
     else
-        for testdata in `find data.d -name '*.sql'`
+        for testdata in `find -L data.d -name '*.sql'`
         do
             cecho "Loading $testdata from data.d" $blue
             $psql -f $testdata -d $database >/dev/null
