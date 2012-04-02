@@ -16,3 +16,6 @@
 * New Mode: Schema
     * Shows Numbered interface to allow editing of schema files
     * i.e: type '1', opens first schema file in $EDITOR
+* Deal with ubuntu sillyness
+    * ubuntu hides pg\_ctl behind wrapper
+    * Either use the wrapper (ick) or discover/guess location of real binary
