@@ -1,6 +1,7 @@
 #!/bin/bash
 
-HAXBY_MODES="$HAXBY_MODES init"
+haxby::core::modes::register init
+haxby::modes::help::register "init: create cluster and load schema"
 
 function haxby::modes::init {
 

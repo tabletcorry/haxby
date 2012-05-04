@@ -1,6 +1,7 @@
 #!/bin/bash
 
-HAXBY_MODES="$HAXBY_MODES start"
+haxby::core::modes::register start
+haxby::modes::help::register "start: Start the database cluster"
 
 function haxby::modes::start {
 

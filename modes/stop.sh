@@ -1,6 +1,7 @@
 #!/bin/bash
 
-HAXBY_MODES="$HAXBY_MODES stop"
+haxby::core::modes::register stop
+haxby::modes::help::register "stop: Stop the database cluster"
 
 function haxby::modes::stop {
 

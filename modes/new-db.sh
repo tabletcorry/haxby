@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-HAXBY_MODES="$HAXBY_MODES newdb"
+haxby::core::modes::register newdb
+haxby::modes::help::register "newdb: Create new database schema folder"
 
 function haxby::modes::newdb {
 

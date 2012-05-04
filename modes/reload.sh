@@ -1,6 +1,7 @@
 #!/bin/bash
 
-HAXBY_MODES="$HAXBY_MODES reload"
+haxby::core::modes::register reload
+haxby::modes::help::register "reload: re-initialize database and attempt to save existing data"
 
 function haxby::modes::reload {
 

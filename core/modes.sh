@@ -19,21 +19,22 @@ export PGLOG
 
 }
 
-function haxby::core::modes {
-
-HAXBY_MODE_DIR=$HAXBY_ROOT/modes
-HAXBY_MODE_DIR=$(readlink -f "$HAXBY_MODE_DIR")
-
-HAXBY_MODES="help"
-
-for mode_file in `ls $HAXBY_MODE_DIR`
-do
-    . $HAXBY_MODE_DIR/$mode_file
-done
-
-function haxby::modes::help {
-    echo "HELP!"
-    echo "Known modes: $HAXBY_MODES"
+function haxby::core::modes::register {
+    if [ -n "$HAXBY_MODES" ]
+    then
+        HAXBY_MODES="$HAXBY_MODES $*"
+    else
+        HAXBY_MODES="$*"
+    fi
 }
 
+function haxby::core::modes {
+
+    HAXBY_MODE_DIR=$HAXBY_ROOT/modes
+    HAXBY_MODE_DIR=$(readlink -f "$HAXBY_MODE_DIR")
+
+    for mode_file in $HAXBY_MODE_DIR/*.sh
+    do
+        . $mode_file
+    done
 }
