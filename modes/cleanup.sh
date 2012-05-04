@@ -5,7 +5,7 @@ haxby::modes::help::register "cleanup: Stop cluster and destroy data files"
 
 function haxby::modes::help::cleanup {
     echo "usage: haxby cleanup"
-    cecho "*** WARNING: This will permanently destroy data" $bg_red -n
+    cecho "*** WARNING: This will permanently destroy data" $BG_RED -n
     echo -e "\ndescription:"
     echo "cleanup immediately stops the postgres cluster and deletes all of 
 the data associated with it"
