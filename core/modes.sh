@@ -20,7 +20,7 @@ export PGLOG
 }
 
 function haxby::core::modes::register {
-    if [ -n "$HAXBY_MODES" ]
+    if [[ -n "$HAXBY_MODES" ]]
     then
         HAXBY_MODES="$HAXBY_MODES $*"
     else

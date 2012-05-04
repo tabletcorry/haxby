@@ -15,7 +15,8 @@ function haxby::modes::init {
 
     cd $HAXBY_DATA
 
-    if [ -n "$RELOAD_DATA" ]; then
+    if [[ -n "$RELOAD_DATA" ]]
+    then
         for database in `ls $HAXBY_DATABASE_D`
         do
             cecho "Backing up data" $FG_BLUE
@@ -73,7 +74,8 @@ function haxby::modes::init {
         done
 
 
-        if [ -n "$RELOAD_DATA" ]; then
+        if [[ -n "$RELOAD_DATA" ]]
+        then
             cecho "Restoring data from backup" $FG_BLUE
             psql --set=ON_ERROR_STOP -1 -d $database -f $HAXBY_DATA/prior_data_$database -q >/dev/null
         else

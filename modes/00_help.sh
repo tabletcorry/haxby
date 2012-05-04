@@ -10,7 +10,8 @@ function haxby::modes::help::register {
 }
 
 function haxby::modes::help {
-    if [ -n "$1" ]; then
+    if [[ -n "$1" ]]
+    then
         haxby::modes::help::$1
     else
         echo -e "$HAXBY_HELP"

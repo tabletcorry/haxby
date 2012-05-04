@@ -21,7 +21,8 @@ haxby::core::modes
 
 for haxby_mode in $HAXBY_MODES
 do
-    if [ "$haxby_mode" == "$mode" ]; then
+    if [[ "$haxby_mode" == "$mode" ]]
+    then
         haxby::modes::$mode $@
         exit $?
     fi

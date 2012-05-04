@@ -1,10 +1,12 @@
 function haxby::core::search-conf-git {
     HAXBY_CONF=$(find $GIT_ROOT -name 'haxby.conf')
     CONF_COUNT=$(wc -l <<<$HAXBY_CONF)
-    if [ "$CONF_COUNT" -gt "1" ]; then
+    if [[ "$CONF_COUNT" -gt "1" ]]
+    then
         echo "Found more than one 'haxby.conf', failed auto-conf"
         exit 1
-    elif [ "$CONF_COUNT" -eq "0" ]; then
+    elif [[ "$CONF_COUNT" -eq "0" ]]
+    then
         echo "No config was auto-discovered, exiting"
         exit 1
     fi

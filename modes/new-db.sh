@@ -5,7 +5,8 @@ haxby::modes::help::register "newdb: Create new database schema folder"
 
 function haxby::modes::newdb {
     db=$1
-    if [ -z "$db" ]; then
+    if [[ -z "$db" ]]
+    then
         echo "Usage: haxby newdb name"
         exit 1
     fi
