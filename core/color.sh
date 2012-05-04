@@ -4,6 +4,9 @@
 # It's easier than hand-coding color.
 
 blue='\e[1;34m'
+green='\e[1;32m'
+red='\e[1;31m'
+bg_red='\e[1;41m'
 
 cecho ()                     # Color-echo.
                              # Argument $1 = message
@@ -15,8 +18,8 @@ local default_msg="No message passed."
 message=${1:-$default_msg}   # Defaults to default message.
 color=${2:-$black}           # Defaults to black, if not specified.
 
-  echo -e "$color"
-  echo "$message"
+  echo -en "$color"
+  echo $3 "$message"
   tput sgr0                      # Reset to normal.
 
   return
