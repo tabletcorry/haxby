@@ -12,11 +12,8 @@ the data associated with it"
 }
 
 function haxby::modes::cleanup {
+    cd $HAXBY_DATA
 
-cd $HAXBY_DATA
-
-pg_ctl stop -m immediate
-
-rm -r $PGDATA $PGLOG
-
+    pg_ctl stop -m immediate
+    rm -r $PGDATA $PGLOG
 }
