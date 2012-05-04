@@ -5,7 +5,7 @@
 set -e
 
 mode=$1
-shift
+shift || true
 
 HAXBY_CORE="$HAXBY_ROOT/core"
 
@@ -28,5 +28,5 @@ do
 done
 
 echo "Unknown Mode"
-echo "Supported Modes: $HAXBY_MODES"
+haxby::modes::help
 exit 1
