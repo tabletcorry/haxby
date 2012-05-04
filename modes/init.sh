@@ -26,9 +26,8 @@ function haxby::modes::init {
         done
     fi
     cecho "Stopping old database" $FG_BLUE
-    set +e
-    pg_ctl stop -m immediate
-    set -e
+    pg_ctl stop -m immediate || true
+
     cecho "Deleting old database files" $FG_BLUE
     rm -rf $PGDATA
 
@@ -72,7 +71,6 @@ function haxby::modes::init {
             cecho "Loading $schema from schemas.d" $FG_BLUE
             $psql -f $schema -d $database >/dev/null
         done
-
 
         if [[ -n "$RELOAD_DATA" ]]
         then
