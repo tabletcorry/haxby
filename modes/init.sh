@@ -48,7 +48,7 @@ function haxby::modes::init {
 
     [[ -e "postgresql.conf" ]] && cp postgresql.conf $PGDATA
     [[ -e "pg_hba.conf" ]] && cp pg_hba.conf $PGDATA
-    [[ -e "pg_ident.conf" ]] && cp pf_ident.conf $PGDATA
+    [[ -e "pg_ident.conf" ]] && cp pg_ident.conf $PGDATA
 
     cecho "Starting new database" $FG_BLUE
     pg_ctl -l $PGLOG -w start
