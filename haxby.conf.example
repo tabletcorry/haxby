@@ -57,4 +57,37 @@
 #PG_MODULES="uuid-ossp hstore"
 
 # There is almost no reason to change this
-# PG_CONTRIB=
+#PG_CONTRIB=
+
+###
+## PG_PORT specifies the port to listen on
+##
+## Default: 5432
+##
+###
+#PG_PORT=
+
+###
+## PG_LISTEN lists the addresses to listen on
+##
+## Default: None (cannot connect via network)
+##
+## Needs to be a comma separated list of addresses (see pg docs)
+###
+#PG_LISTEN=
+
+###
+## PG_SOCKET_DIR specifies the directory for the unix socket, for connection
+##
+## Default: $HAXBY_DATA
+##
+###
+#PG_SOCKET_DIR=
+
+###
+## PG_DEFAULT_DATABASE specifies the default database for psql to connect to
+##
+## Default: None
+##
+###
+#PG_DEFAULT_DATABASE

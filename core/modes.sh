@@ -12,6 +12,17 @@ function haxby::core::defaults {
     [[ -z "$PGDATA" ]] && PGDATA=$HAXBY_DATA/pgdata
     [[ -z "$PGLOG" ]] && PGLOG=$HAXBY_DATA/pglog
 
+    [[ -z "$PG_LISTEN" ]] && PG_LISTEN="''"
+    [[ -z "$PG_PORT" ]] && PG_PORT=5432
+    [[ -z "$PG_SOCKET_DIR" ]] && PG_SOCKET_DIR=$HAXBY_DATA
+    [[ -z "$PG_DEFAULT_DATABASE" ]] && PG_DEFAULT_DATABASE=
+
+    # Set options for psql to use
+    export PGDATABASE=$PG_DEFAULT_DATABASE
+    export PGHOST=$PG_SOCKET_DIR
+    export PGPORT=$PG_PORT
+
+    # Export options for initdb/pg_ctl to use
     export PG_CONTRIB
     export PGDATA
     export PGLOG
