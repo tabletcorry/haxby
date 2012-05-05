@@ -3,10 +3,7 @@ haxby::modes::help::register "init: create cluster and load schema"
 
 function haxby::modes::init {
     case $1 in
-        "reload")
-            RELOAD_DATA=true
-            ;;
-        "restore")
+        "reload" | "restore")
             RELOAD_DATA=true
             ;;
     esac
@@ -82,7 +79,8 @@ function haxby::modes::init {
         if [[ -n "$RELOAD_DATA" ]]
         then
             cecho "Restoring data from backup" $FG_BLUE
-            psql --set=ON_ERROR_STOP -1 -d $database -f $HAXBY_DATA/prior_data_$database -q >/dev/null
+            psql --set=ON_ERROR_STOP -1 -d $database \
+                -f $HAXBY_DATA/prior_data_$database -q >/dev/null
         else
             for testdata in `find -L data.d -name '*.sql'`
             do
