@@ -36,7 +36,7 @@
 ##
 ##  Will be created if it does not exist
 ###
-# PGDATA=$HAXBY_DATA/pgdata
+#PGDATA=$HAXBY_DATA/pgdata
 
 ###
 ## PGLOG states the name of the log file for postgres
@@ -45,7 +45,7 @@
 ##
 ##  Will be created if it does not exist
 ###
-# PGLOG=$HAXBY_DATA/pglog
+#PGLOG=$HAXBY_DATA/pglog
 
 ###
 ## PG_MODULES lists the contrib modules to load
