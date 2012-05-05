@@ -1,5 +1,3 @@
-#!/bin/bash
-
 haxby::core::modes::register init
 haxby::modes::help::register "init: create cluster and load schema"
 
@@ -50,21 +48,12 @@ function haxby::modes::init {
     [[ -e "pg_hba.conf" ]] && cp pg_hba.conf $PGDATA
     [[ -e "pg_ident.conf" ]] && cp pg_ident.conf $PGDATA
 
-    (
-        cat <<EOF
-
-## BEGIN haxby inserted options
-include '$HAXBY_DATA/postgresql.haxby.conf'
-## END Haxby inserted options
-EOF
-    ) >>$PGDATA/postgresql.conf
+    {
+        . $HAXBY_MODE_DIR/templates/init.postgresql.conf
+    } >>$PGDATA/postgresql.conf
 
     {
-        cat <<EOF
-listen_addresses = $PG_LISTEN
-port = $PG_PORT
-unix_socket_directory = '$PG_SOCKET_DIR'
-EOF
+        . $HAXBY_MODE_DIR/templates/init.postgresql.haxby.conf
     } >$HAXBY_DATA/postgresql.haxby.conf
 
 
