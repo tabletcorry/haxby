@@ -1,3 +1,4 @@
+* Make python module to auto-discover haxby
 * Switch to using unix sockets exclusively, to allow parallel development
 * Add modes/flags to manage only the database within a running postgres
     * Would allow for multiple projects on shared instance without confusion
