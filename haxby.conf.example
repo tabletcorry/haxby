@@ -29,6 +29,27 @@
 #HAXBY_TMP=/tmp/haxby
 
 ###
+## HAXBY_IN_PRODUCTION, if set, indicates that the database is being used in
+## production. Operations that may destroy the database are not permitted in
+## production.
+##
+## Not set by default
+###
+#HAXBY_IN_PRODUCTION=
+
+###
+## HAXBY_SCHEMA_VERSION_QUERY is a SQL query that returns one row with one column
+## containing the running schema version number.
+##
+## If the query fails, or if it returns anything other than exactly one
+## non-negative integer, the version is considered unknown and any operation which
+## requires the version will fail.
+##
+##  Default: SELECT MAX(version) FROM app.schema_version;
+###
+#HAXBY_SCHEMA_VERSION_QUERY="SELECT MAX(version) FROM app.schema_version;"
+
+###
 ## PGDATA states the path of the postgres data directory
 ##  Used by postgres binaries
 ##

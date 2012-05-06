@@ -1,4 +1,5 @@
 #!/bin/bash
+# vim: ts=4:sts=4:sw=4:expandtab
 
 haxby::core::modes::register cleanup
 haxby::modes::help::register "cleanup: Stop cluster and destroy data files"
@@ -12,6 +13,8 @@ the data associated with it"
 }
 
 function haxby::modes::cleanup {
+    haxby::core::fail-in-production
+
     cd $HAXBY_DATA
 
     pg_ctl stop -m immediate

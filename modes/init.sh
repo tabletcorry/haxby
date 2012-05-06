@@ -1,7 +1,13 @@
+# vim: ts=4:sts=4:sw=4:expandtab
+
 haxby::core::modes::register init
 haxby::modes::help::register "init: create cluster and load schema"
 
 function haxby::modes::init {
+    if [[ -n $(ls "$HAXBY_DATABASE_D") ]]; then
+      haxby::core::fail-in-production
+    fi
+
     case $1 in
         "reload" | "restore")
             RELOAD_DATA=true
@@ -72,8 +78,7 @@ function haxby::modes::init {
 
         for schema in `find -L schemas.d -name '*.sql'`
         do
-            cecho "Loading $schema from schemas.d" $FG_BLUE
-            $psql -f $schema -d $database >/dev/null
+            haxby::core::apply-schema-file "$database" "$schema"
         done
 
         if [[ -n "$RELOAD_DATA" ]]

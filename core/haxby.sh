@@ -10,9 +10,11 @@ shift || true
 HAXBY_CORE="$HAXBY_ROOT/core"
 
 . $HAXBY_CORE/readlink.sh
+. $HAXBY_CORE/defaults.sh
 . $HAXBY_CORE/modes.sh
 . $HAXBY_CORE/conf.sh
 . $HAXBY_CORE/color.sh
+. $HAXBY_CORE/util.sh
 
 haxby::core::readlink       # Needs to be first
 haxby::core::load-conf

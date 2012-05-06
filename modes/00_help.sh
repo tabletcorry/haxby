@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: ts=4:sts=4:sw=4:expandtab
 
-if [ -z "$HAXBY_HELP_COMMAND_NAME" ]
+if [[ -z "$HAXBY_HELP_COMMAND_NAME" ]]; then
     HAXBY_HELP_COMMAND_NAME=haxby
 fi
 
