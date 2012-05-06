@@ -17,17 +17,7 @@ HAXBY_CORE="$HAXBY_ROOT/core"
 haxby::core::readlink       # Needs to be first
 haxby::core::load-conf
 haxby::core::defaults
-haxby::core::modes
+haxby::core::modes::use-root-mode-dir
 
-for haxby_mode in $HAXBY_MODES
-do
-    if [[ "$haxby_mode" == "$mode" ]]
-    then
-        haxby::modes::$mode $@
-        exit $?
-    fi
-done
+haxby::core::modes::run haxby::modes "$mode" $@
 
-echo "Unknown Mode"
-haxby::modes::help
-exit 1
