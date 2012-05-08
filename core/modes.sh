@@ -40,8 +40,8 @@ function haxby::core::modes::use-mode-dir {
 
 # Run a mode
 function haxby::core::modes::run {
-    namespace=$1
-    mode=$2
+    mode=$1
+    namespace=$HAXBY_MODE_NAMESPACE
     shift 2 || true
     for haxby_mode in $HAXBY_MODES
     do
@@ -62,7 +62,10 @@ function haxby::core::modes::run-with-submodes {
     mode=$1
     submode=$2
     shift 2 || true
-    (haxby::core::modes::use-mode-dir "$mode"
-    haxby::core::modes::run "haxby::modes::$mode" "$submode" $@)
+    (
+        HAXBY_MODE_NAMESPACE="haxby::modes::$mode"
+        haxby::core::modes::use-mode-dir "$mode"
+        haxby::core::modes::run "$submode" $@
+    )
 }
 

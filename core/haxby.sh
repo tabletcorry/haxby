@@ -8,6 +8,7 @@ mode=$1
 shift || true
 
 HAXBY_CORE="$HAXBY_ROOT/core"
+HAXBY_MODE_NAMESPACE="haxby::modes"
 
 . $HAXBY_CORE/readlink.sh
 . $HAXBY_CORE/defaults.sh
@@ -21,5 +22,5 @@ haxby::core::load-conf
 haxby::core::defaults
 haxby::core::modes::use-root-mode-dir
 
-haxby::core::modes::run haxby::modes "$mode" $@
+haxby::core::modes::run "$mode" $@
 
