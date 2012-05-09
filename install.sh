@@ -13,8 +13,8 @@ function haxby::install::install {
     mkdir -p $PREFIX/bin
     
     mkdir -p $PREFIX/share/haxby/{core,modes}
-    cp ./modes/* $PREFIX/share/haxby/modes/
-    cp ./core/* $PREFIX/share/haxby/core/
+    cp -r ./modes/* $PREFIX/share/haxby/modes/
+    cp -r ./core/* $PREFIX/share/haxby/core/
     cp ./haxby.conf.example $PREFIX/share/haxby/
     cp ./LICENSE $PREFIX/share/haxby/
 
