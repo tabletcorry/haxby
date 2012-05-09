@@ -42,7 +42,7 @@ function haxby::core::modes::use-mode-dir {
 function haxby::core::modes::run {
     mode=$1
     namespace=$HAXBY_MODE_NAMESPACE
-    shift 2 || true
+    shift 1 || true
     for haxby_mode in $HAXBY_MODES
     do
         if [[ "$haxby_mode" == "$mode" ]]
