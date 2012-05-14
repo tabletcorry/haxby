@@ -8,6 +8,9 @@ John Lloyd_
 Please note that this project is still under development. It may be a bit
 difficult to figure out or use. I will be making it more usable as time allows.
 
+Currently, all modes except schema have been used fairly extensively, so they 
+could be considered "safe". The schema mode is still very new and not tested.
+
 Feel free to message me to ask how it works.
 
 # Purpose
@@ -15,6 +18,9 @@ Haxby is a quick and easy way to get a Postgresql database up and running. It
 is primarily intended for developemental efforts.
 
 # Usage
+`haxby help` has been implemented, so it should be considered a main resource
+for trying to use haxby.
+
 Commands in haxby are executed using modes, ala `haxby init` or `haxby stop`.
 
 A general workflow for haxby is to create a database with `haxby newdb name`
@@ -37,5 +43,6 @@ take a look at this document: http://jeffammons.net/2011/09/fixing-postgres-on-m
 Some contributions were wiped out in the creation of the repo, they are listed
 here
 
-[adinardi](https://github.com/adinardi)
-[danw](https://github.com/danw)
+
+* [adinardi](https://github.com/adinardi)
+* [danw](https://github.com/danw)
