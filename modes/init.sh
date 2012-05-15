@@ -76,7 +76,7 @@ function haxby::modes::init {
             psql -d $database -f $PG_CONTRIB/$module.sql
         done
 
-        for schema in `find -L schemas.d -name '*.sql'`
+        for schema in `find -L schemas.d -name '*.sql' | sort`
         do
             haxby::core::apply-schema-file "$database" "$schema"
         done
