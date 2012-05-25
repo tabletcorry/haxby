@@ -10,6 +10,6 @@ function haxby::modes::help::socket {
 }
 
 function haxby::modes::socket {
-    socket=$PG_SOCKET_DIR/.s.PGSQL.$PG_PORT
+    socket=$PG_SOCKET_DIR/
     echo $socket
 }
