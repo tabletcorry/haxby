@@ -1,5 +1,4 @@
 * Make python module to auto-discover haxby
-* Switch to using unix sockets exclusively, to allow parallel development
 * Add modes/flags to manage only the database within a running postgres
     * Would allow for multiple projects on shared instance without confusion
     * Would require using DROP DATABASE to ensure total wipe
@@ -14,7 +13,6 @@
     * And a flag to specify the exact file
 * Don't create pg folder unless necessary
 * A mode to create the example config
-* An option to save the old data on init
 * New Mode: Schema
     * Shows Numbered interface to allow editing of schema files
     * i.e: type '1', opens first schema file in $EDITOR
