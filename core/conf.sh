@@ -13,11 +13,23 @@ function haxby::core::search-conf-git {
     echo $HAXBY_CONF
 }
 
-function haxby::core::load-conf {
+function haxby::core::search-conf {
     GIT_ROOT=$(git rev-parse --show-toplevel || true)
     [[ -n "$GIT_ROOT" ]] && HAXBY_CONF=$(haxby::core::search-conf-git)
 
-    [[ -z "$HAXBY_CONF" ]] && { echo "Config auto-discovery failed, exiting"; exit 1; }
+    if [[ -z "$HAXBY_CONF" ]]; then
+        echo "Haxby config auto-discovery for git failed"
+    fi
+}
+
+function haxby::core::load-conf {
+    if [[ -z "$HAXBY_CONF" ]]; then
+        haxby::core::search-conf
+    fi
+
+    [[ -z "$HAXBY_CONF" ]] && { echo "No config provided or found, exiting"; exit 1; }
+
+    [[ ! -e "$HAXBY_CONF" ]] && { echo "Specified conf file does not exist"; exit 1; }
 
     HAXBY_CONF=$(readlink -f $HAXBY_CONF)
     HAXBY_CONF_DIR=$(dirname $HAXBY_CONF)

@@ -4,6 +4,22 @@
 
 set -e
 
+while getopts ":f:" opt; do
+    case $opt in
+        f)
+            HAXBY_CONF="$OPTARG"
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            exit 1
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            exit 1
+            ;;
+    esac
+done
+
 mode=$1
 shift || true
 
