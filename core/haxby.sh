@@ -4,6 +4,8 @@
 
 set -e
 
+[[ -n "$HAXBY_DEBUG" ]] && set -x
+
 while getopts ":f:" opt; do
     case $opt in
         f)
