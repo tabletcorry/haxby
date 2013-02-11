@@ -20,3 +20,5 @@
     * ubuntu hides pg\_ctl behind wrapper
     * Either use the wrapper (ick) or discover/guess location of real binary
 * Add mode to talk to Heroku db instances
+
+* Remove requirement on existing postgres installation
