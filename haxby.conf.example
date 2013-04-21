@@ -112,3 +112,12 @@
 ##
 ###
 #PG_DEFAULT_DATABASE
+
+###
+## PG_EXTRA_CONF specifies an extra Postgres config file for the server to
+## include
+##
+## Default: None
+##
+###
+#PG_EXTRA_CONF=
