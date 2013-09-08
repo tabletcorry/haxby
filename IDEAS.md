@@ -22,3 +22,5 @@
 * Add mode to talk to Heroku db instances
 
 * Remove requirement on existing postgres installation
+
+* Include WAL-E so haxby can be run in a "production" style fashion
