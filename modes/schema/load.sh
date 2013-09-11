@@ -4,7 +4,7 @@
 haxby::core::modes::register load
 haxby::modes::help::register "load: Loads all of the schema files"
 
-function haxby::modes::help::migrate {
+function haxby::modes::help::schema::load {
     #TODO
     echo "Docs not written yet"
 }

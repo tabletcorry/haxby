@@ -4,7 +4,7 @@
 haxby::core::modes::register migrate
 haxby::modes::help::register "migrate: Migrates the database to a newer schema version"
 
-function haxby::modes::help::schema::migrate {
+function haxby::modes::help::migrate {
     echo "usage: haxby migrate DATABASE [NEW_VERSION]"
     echo -e "\ndescription:"
     echo "Migrates a database to a newer schema version."
