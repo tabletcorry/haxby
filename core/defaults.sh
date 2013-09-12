@@ -12,9 +12,10 @@ function haxby::core::defaults {
     INSTALL_DIR="$HAXBY_DATA/install"
     INSTALL_PROFILE_DIR="$INSTALL_DIR/profile.d"
     if [[ -e "$INSTALL_PROFILE_DIR" ]]; then
-        for profile in $INSTALL_PROFILE_DIR/*
+        files=$(ls $INSTALL_PROFILE_DIR)
+        for profile in $files
         do
-            source $profile
+            source $INSTALL_PROFILE_DIR/$profile
         done
     fi
 
