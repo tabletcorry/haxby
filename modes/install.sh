@@ -9,6 +9,22 @@ function haxby::modes::help::install {
 }
 
 function haxby::modes::install {
+    SCRATCH_DIR="$INSTALL_DIR/scratch"
+    PROFILE_DIR="$INSTALL_PROFILE_DIR"
+
+    [[ -e $INSTALL_DIR ]] || mkdir $INSTALL_DIR
+    [[ -e $SCRATCH_DIR ]] || mkdir $SCRATCH_DIR
+    [[ -e $PROFILE_DIR ]] || mkdir $PROFILE_DIR
+
+    if [[ -e /proc/cpuinfo ]]; then
+        CORES=$(grep -c processor /proc/cpuinfo)
+    elif sysctl -n hw.ncpu >/dev/null; then
+        CORES=$(sysctl -n hw.ncpu)
+    else
+        echo "Core count discovery failed, not on mac or linux?"
+        CORES=1
+    fi
+
     haxby::core::modes::run-with-submodes install $@
 }
 

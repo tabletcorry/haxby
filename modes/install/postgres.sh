@@ -10,12 +10,7 @@ function haxby::modes::help::install::postgres {
 }
 
 function haxby::modes::install::postgres {
-    cd $HAXBY_DATA
-
-    [[ ! -e install ]] && mkdir install
-    cd install
-    [[ ! -e scratch ]] && mkdir scratch
-    cd scratch
+    cd $SCRATCH_DIR
 
     PG_VERSION="9.3.0"
     PG_ARCHIVE="postgresql-${PG_VERSION}.tar.bz2"
@@ -34,9 +29,11 @@ function haxby::modes::install::postgres {
     # TODO BUG: Detect existence of readline, zlib
 
     # TODO: Figure out what options we may want
-    ./configure --prefix=$HAXBY_DATA/install/postgres
-    make -s
+    ./configure --prefix=$INSTALL_DIR/postgres
+    make -s -j$CORES
     make -s install
     make -s distclean
+
+    echo "export PATH=$INSTALL_DIR/postgres/bin:\$PATH" >$PROFILE_DIR/postgres.sh
 
 }

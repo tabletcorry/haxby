@@ -9,6 +9,15 @@ function haxby::core::defaults {
     [[ -z "$HAXBY_DATA" ]] && HAXBY_DATA=$HAXBY_CONF_DIR/pg
     [[ ! -d "$HAXBY_DATA" ]] && mkdir $HAXBY_DATA
 
+    INSTALL_DIR="$HAXBY_DATA/install"
+    INSTALL_PROFILE_DIR="$INSTALL_DIR/profile.d"
+    if [[ -e "$INSTALL_PROFILE_DIR" ]]; then
+        for profile in $INSTALL_PROFILE_DIR/*
+        do
+            source $profile
+        done
+    fi
+
     if [[ -z "$HAXBY_SCHEMA_VERSION_QUERY" ]]; then
       HAXBY_SCHEMA_VERSION_QUERY="SELECT MAX(version) FROM app.schema_version;"
     fi
