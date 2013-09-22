@@ -24,7 +24,7 @@ function haxby::modes::install::postgres {
     [[ ! -e $PG_ARCHIVE ]] && curl -f -o $PG_ARCHIVE $PG_URL
 
 
-    sha1sum -c <(echo $PG_SHA) || { rm $PG_ARCHIVE; echo "Checksum Failed"; exit 1; }
+    sha1sum -c <(echo "$PG_SHA") || { rm $PG_ARCHIVE; echo "Checksum Failed"; exit 1; }
 
     if [[ -n "$PIP_DOWNLOAD_CACHE" ]]; then
         ln $PG_ARCHIVE "$PIP_DOWNLOAD_CACHE/$PG_ARCHIVE"
