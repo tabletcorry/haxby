@@ -10,6 +10,7 @@ while getopts ":f:" opt; do
     case $opt in
         f)
             HAXBY_CONF="$OPTARG"
+            shift; shift
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
