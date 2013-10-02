@@ -29,12 +29,37 @@ shift || true
 HAXBY_CORE="$HAXBY_ROOT/core"
 HAXBY_MODE_NAMESPACE="haxby::modes"
 
+exec 8>&1
+exec 9>&2
+
+function command_not_found_handle {
+    cmd=$1
+    shift
+
+    if which $cmd
+    then
+        set +e
+        $cmd $*
+        return_code=$?
+        set -e
+    else
+        return_code=127
+    fi
+
+    if [ "$return_code" -eq 127 ]; then
+        echo "Command not found: $cmd" >&9
+    fi
+
+    return $return_code
+}
+
 . $HAXBY_CORE/readlink.sh
 . $HAXBY_CORE/defaults.sh
 . $HAXBY_CORE/modes.sh
 . $HAXBY_CORE/conf.sh
 . $HAXBY_CORE/color.sh
 . $HAXBY_CORE/util.sh
+
 
 haxby::core::readlink       # Needs to be first
 haxby::core::load-conf
