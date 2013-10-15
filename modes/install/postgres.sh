@@ -17,7 +17,7 @@ function haxby::modes::install::postgres {
     PG_URL="http://ftp.postgresql.org/pub/source/v$PG_VERSION/$PG_ARCHIVE"
     PG_SHA="63a7b8788cd18247d7af5fd4a320abebb0535a44  $PG_ARCHIVE"
     
-    if [[ -n "$PIP_DOWNLOAD_CACHE" ]]; then
+    if [[ -n "$PIP_DOWNLOAD_CACHE" && ! -e "$PG_ARCHIVE" ]]; then
         [[ -e "$PIP_DOWNLOAD_CACHE/$PG_ARCHIVE" ]] && ln "$PIP_DOWNLOAD_CACHE/$PG_ARCHIVE"
     fi
 
@@ -26,7 +26,7 @@ function haxby::modes::install::postgres {
 
     sha1sum -c <(echo "$PG_SHA") || { rm $PG_ARCHIVE; echo "Checksum Failed"; exit 1; }
 
-    if [[ -n "$PIP_DOWNLOAD_CACHE" ]]; then
+    if [[ -n "$PIP_DOWNLOAD_CACHE" && ! -e "$PIP_DOWNLOAD_CACHE/$PG_ARCHIVE" ]]; then
         ln $PG_ARCHIVE "$PIP_DOWNLOAD_CACHE/$PG_ARCHIVE"
     fi
 
