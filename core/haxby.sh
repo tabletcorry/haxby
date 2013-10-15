@@ -6,6 +6,12 @@ set -e
 
 [[ -n "$HAXBY_DEBUG" ]] && set -x
 
+if [[ $EUID -eq 0 && -z "$HAXBY_ROOT_SMASH" ]]; then
+    echo "Haxby should not be run as root/sudo" 1>&2
+    echo "If you really know what you are doing, set HAXBY_ROOT_SMASH" 1>&2
+    exit 1
+fi
+
 while getopts ":f:" opt; do
     case $opt in
         f)
