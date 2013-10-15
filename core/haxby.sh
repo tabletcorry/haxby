@@ -54,6 +54,7 @@ function command_not_found_handle {
 }
 
 . $HAXBY_CORE/readlink.sh
+. $HAXBY_CORE/sha.sh
 . $HAXBY_CORE/defaults.sh
 . $HAXBY_CORE/modes.sh
 . $HAXBY_CORE/conf.sh
@@ -62,6 +63,7 @@ function command_not_found_handle {
 
 
 haxby::core::readlink       # Needs to be first
+haxby::core::sha            # Early is good
 haxby::core::load-conf
 haxby::core::defaults
 haxby::core::modes::use-root-mode-dir
