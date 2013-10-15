@@ -1,9 +1,3 @@
-**Haxby** _n_: Any garden implement found in a potting shed whose exact 
-purpose is unclear.
-
-_Definition borrowed from "The Meaning of Liff" by Douglas Adams and 
-John Lloyd_
-
 # WARNING
 Please note that this project is still under development. It may be a bit
 difficult to figure out or use. I will be making it more usable as time allows.
@@ -11,7 +5,8 @@ difficult to figure out or use. I will be making it more usable as time allows.
 Currently, all modes except schema have been used fairly extensively, so they 
 could be considered "safe". The schema mode is still very new and not tested.
 
-Feel free to message me to ask how it works.
+Feel free to message me to ask how it works. I use it for several projects, and
+it saves me quite a bit of time.
 
 # Purpose
 Haxby is a quick and easy way to get a Postgresql database up and running. It
@@ -32,8 +27,9 @@ anywhere (in the repo, that is) and haxby will find it. An example config is
 available in the source tree.
 
 # Notes
-You will need postgres. This is currently only tested on Homebrew Postgres 9.X
-but it should work on prior versions and other platforms.
+You will need postgres. Haxby can provide a copy using `haxby install postgres`
+or you can use something provided on your system. Mac users should probably use
+[homebrew](http://brew.sh/).
 
 If you hit issues with shared memory (on mac), you are probably running more
 than one instance of postgres. Don't do that. If you really need to though,
@@ -45,4 +41,3 @@ here
 
 
 * [adinardi](https://github.com/adinardi)
-* [danw](https://github.com/danw)
