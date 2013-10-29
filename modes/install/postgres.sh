@@ -12,10 +12,10 @@ function haxby::modes::help::install::postgres {
 function haxby::modes::install::postgres {
     cd $SCRATCH_DIR
 
-    PG_VERSION="9.3.0"
+    PG_VERSION="9.3.1"
     PG_ARCHIVE="postgresql-${PG_VERSION}.tar.bz2"
     PG_URL="http://ftp.postgresql.org/pub/source/v$PG_VERSION/$PG_ARCHIVE"
-    PG_SHA="63a7b8788cd18247d7af5fd4a320abebb0535a44  $PG_ARCHIVE"
+    PG_SHA="8ea4a7a92a6f5a79359b02e683ace335c5eb45dffe7f8a681a9ce82470a8a0b8  $PG_ARCHIVE"
     
     if [[ -n "$PIP_DOWNLOAD_CACHE" && ! -e "$PG_ARCHIVE" ]]; then
         [[ -e "$PIP_DOWNLOAD_CACHE/$PG_ARCHIVE" ]] && ln "$PIP_DOWNLOAD_CACHE/$PG_ARCHIVE"
@@ -24,7 +24,7 @@ function haxby::modes::install::postgres {
     [[ ! -e $PG_ARCHIVE ]] && curl -f -o $PG_ARCHIVE $PG_URL
 
 
-    sha1sum -c <(echo "$PG_SHA") || { rm $PG_ARCHIVE; echo "Checksum Failed"; exit 1; }
+    sha256sum -c <(echo "$PG_SHA") || { rm $PG_ARCHIVE; echo "Checksum Failed"; exit 1; }
 
     if [[ -n "$PIP_DOWNLOAD_CACHE" && ! -e "$PIP_DOWNLOAD_CACHE/$PG_ARCHIVE" ]]; then
         ln $PG_ARCHIVE "$PIP_DOWNLOAD_CACHE/$PG_ARCHIVE"
