@@ -12,15 +12,9 @@
 * More ways to do config autodiscovery
     * And a flag to specify the exact file
 * Don't create pg folder unless necessary
-* A mode to create the example config
 * New Mode: Schema
     * Shows Numbered interface to allow editing of schema files
     * i.e: type '1', opens first schema file in $EDITOR
-* Deal with ubuntu sillyness
-    * ubuntu hides pg\_ctl behind wrapper
-    * Either use the wrapper (ick) or discover/guess location of real binary
 * Add mode to talk to Heroku db instances
-
-* Remove requirement on existing postgres installation
 
 * Include WAL-E so haxby can be run in a "production" style fashion
