@@ -18,3 +18,5 @@
 * Add mode to talk to Heroku db instances
 
 * Include WAL-E so haxby can be run in a "production" style fashion
+    * Add installation mode for daemontools, wal-e
+    * Setup wal-e
