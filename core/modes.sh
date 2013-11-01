@@ -47,7 +47,7 @@ function haxby::core::modes::run {
     do
         if [[ "$haxby_mode" == "$mode" ]]
         then
-            $namespace::$mode $@
+            $namespace::$mode "$@"
             exit $?
         fi
     done
@@ -65,7 +65,7 @@ function haxby::core::modes::run-with-submodes {
     (
         HAXBY_MODE_NAMESPACE="haxby::modes::$mode"
         haxby::core::modes::use-mode-dir "$mode"
-        haxby::core::modes::run "$submode" $@
+        haxby::core::modes::run "$submode" "$@"
     )
 }
 

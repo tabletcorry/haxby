@@ -5,10 +5,10 @@ haxby::core::modes::register schema
 haxby::modes::help::register "schema: Various schema tools"
 
 function haxby::modes::help::schema {
-    haxby::core::modes::run-with-submodes schema help $@
+    haxby::core::modes::run-with-submodes schema help "$@"
 }
 
 function haxby::modes::schema {
-    haxby::core::modes::run-with-submodes schema $@
+    haxby::core::modes::run-with-submodes schema "$@"
 }
 

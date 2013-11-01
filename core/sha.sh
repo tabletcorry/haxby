@@ -7,7 +7,7 @@ function haxby::core::sha {
     then
         # Probably a mac
         function sha256sum {
-            shasum -a 256 $@
+            shasum -a 256 "$@"
         }
     else
         echo "No usable method to sha files found, exiting"

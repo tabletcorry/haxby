@@ -4,6 +4,6 @@ haxby::core::modes::register init
 haxby::modes::help::register "init: create cluster and load schema"
 
 function haxby::modes::init {
-    haxby::modes::init-cluster $@
-    haxby::modes::schema load $@
+    haxby::modes::init-cluster "$@"
+    haxby::modes::schema load "$@"
 }

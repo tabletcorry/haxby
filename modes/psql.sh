@@ -13,5 +13,5 @@ function haxby::modes::psql {
     if [ -z "$PAGER" ]; then
         export PAGER=less
     fi
-    psql $@
+    psql "$@"
 }

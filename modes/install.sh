@@ -5,7 +5,7 @@ haxby::core::modes::register install
 haxby::modes::help::register "install: Install what you need"
 
 function haxby::modes::help::install {
-    haxby::core::modes::run-with-submodes install help $@
+    haxby::core::modes::run-with-submodes install help "$@"
 }
 
 function haxby::modes::install {
@@ -25,6 +25,6 @@ function haxby::modes::install {
         CORES=1
     fi
 
-    haxby::core::modes::run-with-submodes install $@
+    haxby::core::modes::run-with-submodes install "$@"
 }
 

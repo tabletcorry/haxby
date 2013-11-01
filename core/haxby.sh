@@ -74,5 +74,5 @@ haxby::core::load-conf
 haxby::core::defaults
 haxby::core::modes::use-root-mode-dir
 
-haxby::core::modes::run "$mode" $@
+haxby::core::modes::run "$mode" "$@"
 
