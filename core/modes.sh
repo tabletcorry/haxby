@@ -10,6 +10,15 @@ function haxby::core::modes::register {
     fi
 }
 
+function haxby::core::modes::register_safemode {
+    if [[ -n "$HAXBY_SAFE_MODES" ]]
+    then
+        HAXBY_SAFE_MODES="$HAXBY_SAFE_MODES $*"
+    else
+        HAXBY_SAFE_MODES="$*"
+    fi
+}
+
 # Load the modes in the current mode directory
 function haxby::core::modes::load-modes {
     for mode_file in $HAXBY_MODE_DIR/*.sh
@@ -43,6 +52,10 @@ function haxby::core::modes::run {
     mode=$1
     namespace=$HAXBY_MODE_NAMESPACE
     shift 1 || true
+    if [[ -n "$HAXBY_SAFEMODE" ]]
+    then
+        HAXBY_MODES="$HAXBY_SAFE_MODES"
+    fi
     for haxby_mode in $HAXBY_MODES
     do
         if [[ "$haxby_mode" == "$mode" ]]

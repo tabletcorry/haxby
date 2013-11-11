@@ -2,7 +2,8 @@
 # vim: ts=4:sts=4:sw=4:expandtab
 
 haxby::core::modes::register conf
-haxby::modes::help::register "conf: Print a sample conf file"
+haxby::core::modes::register_safemode conf
+haxby::modes::help::register "conf: Print a sample conf file [safe]"
 
 function haxby::modes::help::conf {
     echo "usage: haxby conf"

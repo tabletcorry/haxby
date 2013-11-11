@@ -14,7 +14,7 @@ function haxby::core::search-conf-git {
 }
 
 function haxby::core::search-conf {
-    GIT_ROOT=$(git rev-parse --show-toplevel || true)
+    GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || true )
     [[ -n "$GIT_ROOT" ]] && HAXBY_CONF=$(haxby::core::search-conf-git)
 
     if [[ -z "$HAXBY_CONF" ]]; then
@@ -27,7 +27,12 @@ function haxby::core::load-conf {
         haxby::core::search-conf
     fi
 
-    [[ -z "$HAXBY_CONF" ]] && { echo "No config provided or found, exiting"; exit 1; }
+    if [[ -z "$HAXBY_CONF" ]]
+    then
+        echo "No config provided or found, entering safemode"
+        HAXBY_SAFEMODE=true
+        return
+    fi
 
     [[ ! -e "$HAXBY_CONF" ]] && { echo "Specified conf file does not exist"; exit 1; }
 
