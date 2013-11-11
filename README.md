@@ -13,6 +13,13 @@ Feel free to message me to ask how it works. I use it for several projects, and
 it saves me quite a bit of time.
 
 # Usage
+The easiest way to get started follows:
+
+```
+git clone https://github.com/tabletcorry/haxby.git
+export PATH=$PATH:$PWD/haxby
+```
+
 `haxby help` has been implemented, so it should be considered a main resource
 for trying to use haxby.
 
