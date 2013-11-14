@@ -27,7 +27,10 @@ function haxby::core::defaults {
       HAXBY_SCHEMA_VERSION_QUERY="SELECT MAX(version) FROM app.schema_version;"
     fi
 
-    [[ -z "$PG_CONTRIB" ]] && PG_CONTRIB=$(pg_config --sharedir)/contrib
+    if which pg_config >/dev/null 2>&1
+    then
+        [[ -z "$PG_CONTRIB" ]] && PG_CONTRIB=$(pg_config --sharedir)/contrib
+    fi
     [[ -z "$PGDATA" ]] && PGDATA=$HAXBY_DATA/pgdata
     [[ -z "$PGLOG" ]] && PGLOG=$HAXBY_DATA/pglog
 
