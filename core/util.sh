@@ -45,11 +45,17 @@ function haxby::core::find-schema-by-version {
     echo -n "$result"
 }
 
+function psql {
+    dbname=$PG_DEFAULT_DATABASE
+    [[ -n "$PG_DATABASE" ]] && dbname=$PG_DATABASE && unset $PG_DATABASE
+    /usr/bin/env psql "$PSQL_CONN_STRING dbname=$dbname" "$@"
+}
+
 function haxby::core::apply-schema-file {
     database=$1
     schema=$2
-    psql="psql --echo-all --set=ON_ERROR_STOP="
     cecho "Loading $schema from schemas.d" $FG_BLUE
-    $psql -f "$schema" -d "$database" >/dev/null
+    PG_DATABASE=$database
+    psql --echo-all --set=ON_ERROR_STOP=1 -f "$schema" >/dev/null
 }
 

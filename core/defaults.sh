@@ -13,6 +13,8 @@ function haxby::core::defaults {
         [[ ! -d "$HAXBY_DATA" ]] && mkdir $HAXBY_DATA
     fi
 
+    [[ -z "$HAXBY_SLOW" ]] && HAXBY_FAST=true
+
     INSTALL_DIR="$HAXBY_DATA/install"
     INSTALL_PROFILE_DIR="$INSTALL_DIR/profile.d"
     if [[ -e "$INSTALL_PROFILE_DIR" ]]; then
@@ -38,11 +40,20 @@ function haxby::core::defaults {
     [[ -z "$PG_PORT" ]] && PG_PORT=5432
     [[ -z "$PG_SOCKET_DIR" ]] && PG_SOCKET_DIR=$HAXBY_DATA
     [[ -z "$PG_DEFAULT_DATABASE" ]] && PG_DEFAULT_DATABASE=
+    [[ -z "$PG_USER" ]] && PG_USER=$USER
+    [[ -z "$PG_PASSWORD" ]] && PG_PASSWORD=""
 
     # Set options for psql to use
-    export PGDATABASE=$PG_DEFAULT_DATABASE
-    export PGHOST=$PG_SOCKET_DIR
-    export PGPORT=$PG_PORT
+    PGDATABASE=$PG_DEFAULT_DATABASE
+    PGHOST=$PG_SOCKET_DIR
+    PGPORT=$PG_PORT
+    PGPASSWORD=$PG_PASSWORD
+    PGUSER=$PG_USER
+
+    export PSQL_CONN_STRING="host=$PGHOST port=$PGPORT user=$PGUSER"
+    if [[ -n "$PGPASSWORD" ]]; then
+        export PSQL_CONN_STRING="$PSQL_CONN_STRING password=$PGPASSWORD"
+    fi
 
     # Export options for initdb/pg_ctl to use
     export PG_CONTRIB

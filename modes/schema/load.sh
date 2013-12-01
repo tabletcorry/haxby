@@ -25,31 +25,51 @@ function haxby::modes::schema::load {
     for database in `ls $HAXBY_DATABASE_D`
     do
         pushd $HAXBY_DATABASE_D/$database >/dev/null
-        psql="psql --echo-all --set=ON_ERROR_STOP="
+
+
         cecho "Loading init.sql" $FG_BLUE
-        $psql -f init.sql -d postgres >/dev/null
+        PG_DATABASE=postgres
+        psql --echo-all --set=ON_ERROR_STOP=1 -f init.sql >/dev/null
+        dump_revision="-1"
+        if [[ -e "dump.d" && -n "$HAXBY_FAST" ]]; then
+            PG_DATABASE=postgres
+            dumpfile=$(ls dump.d/ | sort -g | tail -1)
+            cecho "Loading dump file $dumpfile" $FG_BLUE
+            psql -f dump.d/$dumpfile
+            dump_revision=$(echo $dumpfile | sed -E 's/^0*([0-9][0-9]*)[^0-9].*sql$/\1/')
+            echo $revision
+        fi
 
         for module in $PG_MODULES
         do
             cecho "Loading module $module" $FG_BLUE
-            psql -d $database -f $PG_CONTRIB/$module.sql
+            PG_DATABASE=$database
+            psql -f $PG_CONTRIB/$module.sql
         done
 
         for schema in `find -L schemas.d -name '*.sql' | sort`
         do
-            haxby::core::apply-schema-file "$database" "$schema"
+            echo $schema $dump_revision
+            revision=$(basename $schema | sed -E 's/^0*([0-9][0-9]*)[^0-9].*sql$/\1/')
+            if [[ "$revision" -gt "$dump_revision" ]]; then
+                haxby::core::apply-schema-file "$database" "$schema"
+            else
+                cecho "Skipping $schema due to newer dump" $FG_BLUE
+            fi
         done
 
         if [[ -n "$RELOAD_DATA" ]]
         then
             cecho "Restoring data from backup" $FG_BLUE
-            psql --set=ON_ERROR_STOP -1 -d $database \
+            PG_DATABASE=$database
+            psql --set=ON_ERROR_STOP -1 \
                 -f $HAXBY_DATA/prior_data_$database -q >/dev/null
         else
             for testdata in `find -L data.d -name '*.sql'`
             do
                 cecho "Loading $testdata from data.d" $FG_BLUE
-                $psql -f $testdata -d $database >/dev/null
+                PG_DATABASE=$database
+                psql -f $testdata >/dev/null
             done
         fi
         
