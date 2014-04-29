@@ -1,10 +1,10 @@
 # color-echo.sh: Echoing text messages in color.
 # Borrowed from: http://tldp.org/LDP/abs/html/colorizing.html#COLORECHO
 
-FG_BLUE='\e[1;34m'
-FG_GREEN='\e[1;32m'
-FG_RED='\e[1;31m'
-BG_RED='\e[1;41m'
+FG_BLUE='\033[1;34m'
+FG_GREEN='\033[1;32m'
+FG_RED='\033[1;31m'
+BG_RED='\033[1;41m'
 
 # Color-echo.
 # Argument $1 = message
