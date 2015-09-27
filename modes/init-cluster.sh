@@ -35,8 +35,11 @@ function haxby::modes::init-cluster {
     if pgrep postgres
     then
         echo "A Postgres process is still running"
-        echo "This will mess things up (usually); Bailing"
-        exit 1
+        if [ "$HAXBY_SKIP_PSQL_PROCESS_CHECK" != "1" ]
+        then
+            echo "This will mess things up (usually); Bailing"
+            exit 1
+        fi
     fi
 
     echo "***" >>$PGLOG
